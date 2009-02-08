@@ -1,0 +1,6 @@
+development:
+  adapter: mysql
+  database: converter_dev
+  username: root
+  password: xxx
+  host: localhost
