@@ -1,0 +1,19 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#conversion_submit").click(function() {
+            $("#message").html('');
+            return true;
+        });
+    });
+</script>
+
+<p id="message"><%= flash[:message] %></p>
+
+<div>
+  <p><b>docx</b> to <b>doc</b> converter</p>
+  <% form_for :conversion, @conversion, :url => conversions_path, :html => {:multipart => true, :id => 'convert_form'} do |f| %>
+    <%= f.label :uploaded_data, 'docx: ' %>
+    <%= custom_file_field('conversion[uploaded_data]') %>
+    <%= f.submit 'Convert to doc' %>
+  <% end %>
+</div>

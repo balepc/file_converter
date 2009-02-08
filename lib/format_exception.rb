@@ -1,0 +1,3 @@
+class FormatException < Exception
+  
+end

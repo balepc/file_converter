@@ -1,0 +1,8 @@
+== 'docx' to 'doc' Converter
+
+Simple docx to doc converter.
+
+Dependencies:
+
+  * odf-converter (http://www.oooninja.com/2008/01/convert-openxml-docx-etc-in-linux-using.html)
+  * unoconv (http://dag.wieers.com/home-made/unoconv/)
