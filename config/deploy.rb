@@ -19,9 +19,9 @@ set :user, 'deploy'
 set :ssh_options, { :forward_agent => true }
 
 ssh_options[:port] = 1488
-role :app, "deploy@ekonomka.lv"
-role :web, "deploy@ekonomka.lv"
-role :db,  "deploy@ekonomka.lv", :primary => true
+role :app, "balepc@gunboat.rails.lv"
+role :web, "balepc@gunboat.rails.lv"
+role :db,  "balepc@gunboat.rails.lv", :primary => true
  
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -47,6 +47,7 @@ namespace :deploy do
 
   desc "Link static images to new release"
   task :symlink_static, :roles => :app do
+    run "ln -s #{shared_path}/log #{release_path}/public/"
     run "ln -s #{shared_path}/assets #{release_path}/public/"
   end
 end
