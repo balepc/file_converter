@@ -3,7 +3,7 @@ require 'converters/base'
 class OdtDoc < Base
   
   def command
-    `unoconv --format=doc #{self.master_filename}`
+    `unoconv -p 2002 --format=doc #{self.master_filename}`
   end
   
   def from
