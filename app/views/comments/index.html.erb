@@ -25,7 +25,7 @@
   <% end %>
   
   <% form_for :comment, @comment, :url => comments_path, :html => {:class=>'wufoo'} do |f| %>
-          
+            
     <div class="info">
       <h2>Comments (<%= Comment.count %>)</h2>
     </div>
@@ -57,13 +57,14 @@
         <div>
           <%= f.text_area :body, :class => 'field textarea medium', :cols => 50, :rows => 10 %>
         </div>
-        <li class="buttons">
-          <input id="saveForm" class="btTxt" type="submit" value="Comment"/>
-        </li>
       </li>
+      <li class="buttons">
+        <input id="saveForm" class="btTxt" type="submit" value="Comment"/>
+      </li>
+    
     </ul>
   <% end %>
-                    
+                      
 </div>
 <br>
 

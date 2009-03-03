@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    @comment.ip_address = request.host
+    @comment.ip_address = request.remote_ip
     if @comment.save
       redirect_to comments_path
     else
