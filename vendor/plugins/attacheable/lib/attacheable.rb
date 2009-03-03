@@ -187,7 +187,11 @@ module Attacheable
     return thumbnail_path unless thumbnail
     (return thumbnail_path if File.exists?(thumbnail_path)) unless attachment_options[:force_autocreate]
     return nil unless /image\//.match(content_type)
-    create_thumbnail(thumbnail, thumbnail_path)
+    if attachment_options[:croppable_thumbnails].include?(thumbnail.to_sym) && !attachment_options[:thumbnails][thumbnail.to_sym].blank?
+      crop_and_thumbnail(thumbnail, thumbnail_path)
+    else
+      create_thumbnail(thumbnail, thumbnail_path)
+    end
     after_create_thumbnail(thumbnail, thumbnail_path) if respond_to?(:after_create_thumbnail)
     thumbnail_path
   end
@@ -198,20 +202,32 @@ module Attacheable
 
   def create_thumbnail(thumbnail, thumbnail_path)
     return nil unless File.exists?(full_filename)
-    
-    extent = "" 
-    resize_extent = ""
-    if attachment_options[:croppable_thumbnails].include?(thumbnail.to_sym) && !attachment_options[:thumbnails][thumbnail.to_sym].blank?
-      extent = " -extent '#{attachment_options[:thumbnails][thumbnail.to_sym]}' "
-      resize_extent = '^'
+    if attachment_options[:thumbnails][thumbnail.to_sym].blank?
+      `convert "#{thumbnail_source_filename(thumbnail)}" -colorspace rgb "#{thumbnail_path}"`
+    else
+      `convert "#{thumbnail_source_filename(thumbnail)}" -thumbnail "#{attachment_options[:thumbnails][thumbnail.to_sym]}" -colorspace rgb "#{thumbnail_path}"`
     end
-    resize = attachment_options[:thumbnails][thumbnail.to_sym].blank? ? "" : 
-      "-resize '#{attachment_options[:thumbnails][thumbnail.to_sym]}#{resize_extent}'"
-    
-    `convert "#{thumbnail_source_filename(thumbnail)}"[0] #{resize} #{extent} -colorspace rgb "#{thumbnail_path}"`
     thumbnail_path
   end
 
+  def crop_and_thumbnail(thumbnail, thumbnail_path)
+    file_type, width, height = identify_image_properties(full_filename)
+    album_x, album_y = attachment_options[:thumbnails][thumbnail.to_sym].split("x").map &:to_i
+    return nil unless album_x && album_y && width && height
+    scale_x = width.to_f / album_x
+    scale_y = height.to_f / album_y
+    if scale_x > scale_y
+      x, y = (album_x*scale_y).floor, height
+      shift_x, shift_y = (width.to_i - x)/2, 0
+    else
+      x, y = width, (album_y*scale_x).floor
+      shift_x, shift_y = 0, (height.to_i - y)/2
+    end
+#    FileUtils.cp(full_filename_without_creation, thumbnail_path)
+    `convert -crop #{x}x#{y}+#{shift_x}+#{shift_y} "#{full_filename}" "#{thumbnail_path}"`
+    `mogrify  -geometry #{album_x}x#{album_y} "#{thumbnail_path}"`
+    thumbnail_path
+  end
 
 
   public

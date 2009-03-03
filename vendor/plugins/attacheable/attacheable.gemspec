@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'attacheable'
-  s.version = '1.6'
-  s.date    = '2009-10-07'
+  s.version = '1.5'
+  s.date    = '2009-09-27'
   s.summary = 'Library to handle image uploads'
   s.email   = "max@maxidoors.ru"
   s.author  = "Max Lapshin"
@@ -17,8 +17,7 @@ Gem::Specification.new do |s|
 
   4. works only with file system (and does it better, than attachment_fu)
 
-  5. create only one row in table for one image. No separate rows for each thumbnail.
-"
+  5. create only one row in table for one image. No separate rows for each thumbnail."
   s.rubyforge_project = "attacheable"
   s.rdoc_options = ["--main", "README"]
   s.extra_rdoc_files = ["README"]
