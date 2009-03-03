@@ -1,0 +1,70 @@
+/* - - - - - - - - - - - - - - - - - - - - -
+
+Title : Wufoo Form Structure
+Author : Infinity Box Inc.
+URL : http://wufoo.com
+
+Last Updated : Septabsber 30, 2008
+
+- - - - - - - - - - - - - - - - - - - - - */
+
+body {
+    background:#eee;
+    margin:7px 0 15px 0;
+    text-align:center;
+    font-size:small;
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    margin-top: 150px;
+}
+
+#container{
+    text-align:left;
+    background:#fff;
+}
+
+#container, #top, #bottom, #footer{
+    margin:0 auto;
+    width:450px;
+}
+#top, #bottom{
+    width:460px;
+    height:10px !important;
+    display:block !important;
+}
+#top{
+    margin-top:10px;
+}
+
+form.wufoo{
+    margin:20px 20px 0 20px;
+    padding:0 0 20px 0;
+}
+
+/* ----- LOGO ----- */
+
+h1{
+    margin:0;
+    padding:0;
+    min-height:0;
+    background-color:#dedede;
+    font-size: 12pt;
+    padding: 5px 5px 5px 5px;
+    text-decoration:none;
+}
+h1 a{
+    min-height:40px;
+    height:40px;
+    display:block;
+    overflow:hidden;
+}
+
+img, a img{
+    border:none;
+}
+* html img { 
+    behavior: url(/images/iepngfix.htc);
+}
+
+.hide{
+    display:none !important;
+}

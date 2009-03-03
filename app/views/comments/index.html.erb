@@ -1,0 +1,71 @@
+<div id="container">
+  <h1>Service development</h1>
+  <% unless session[:poll_id] %>
+    <% form_for :poll, @poll, :url => polls_path, :html => {:class=>'wufoo'} do |f| %> 
+      <div class="info">
+        <h2>We are trying to figure out what exactly you are looking for, so your comments are welcome...</h2>
+      </div>
+      <li class="">
+        <label class="desc">I'm looking for</label>
+        <div class="column">
+          <input id="choice1" class="field radio" type="radio" checked="checked" value="xlsx -> xls" name="poll[answer]"/>
+          <label class="choice" for="choice1">xlsx -> xls</label>
+          <input id="choice2" class="field radio" type="radio" value="pdf -> jpg" name="poll[answer]"/>
+          <label class="choice" for="choice2">pdf -> jpg</label>
+          <input id="choice3" class="field radio" type="radio" value="docx -> odt" name="poll[answer]"/>
+          <label class="choice" for="choice3">docx -> odt</label>
+          <input id="choice3" class="field radio" type="radio" value="other" name="poll[answer]"/>
+          <label class="choice" for="choice3">other</label>
+        </div>
+      </li>
+      <li class="buttons">
+        <input id="saveForm" class="btTxt" type="submit" value="Vote"/>
+      </li>
+    <% end %>
+  <% end %>
+  
+  <% form_for :comment, @comment, :url => comments_path, :html => {:class=>'wufoo'} do |f| %>
+          
+    <div class="info">
+      <h2>Comments (<%= Comment.count %>)</h2>
+    </div>
+    <% @comments.each do |comment| %>
+      <div class="info">
+        <h3><%= comment.name  %> wrote:</h3>
+        <div><%= comment.body %></div>
+      </div>
+    <% end %>
+    <ul>
+      <li>
+        <label class="desc">Name <span class="req">*</span></label>
+        <div>
+          <%= f.text_field :name, :class => 'field text large', :maxlength => 255 %>
+        </div>
+      </li>
+      <li>
+        <label class="desc">Email
+          <span class="req">*</span>
+        </label>
+        <div>
+          <%= f.text_field :email, :class => 'field text large', :maxlength => 255 %>
+        </div>
+      </li>
+      <li class="">
+        <label class="desc">
+          Comment
+        </label>
+        <div>
+          <%= f.text_area :body, :class => 'field textarea medium', :cols => 50, :rows => 10 %>
+        </div>
+        <li class="buttons">
+          <input id="saveForm" class="btTxt" type="submit" value="Comment"/>
+        </li>
+      </li>
+    </ul>
+  <% end %>
+                    
+</div>
+<br>
+
+
+

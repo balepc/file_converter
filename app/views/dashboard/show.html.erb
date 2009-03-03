@@ -7,13 +7,40 @@
     });
 </script>
 
-<p id="message"><%= flash[:message] %></p>
 
-<div>
-  <p><b>docx</b> to <b>doc</b> converter</p>
-  <% form_for :conversion, @conversion, :url => conversions_path, :html => {:multipart => true, :id => 'convert_form'} do |f| %>
-    <%= f.label :uploaded_data, 'docx: ' %>
-    <%= custom_file_field('conversion[uploaded_data]') %>
-    <%= f.submit 'Convert to doc' %>
+
+<div id="container">
+  <h1>docx to doc converter</h1>
+  <% form_for :conversion, @conversion, :url => conversions_path, :html => {:multipart => true, :id => 'convert_form', :class=>'wufoo'} do |f| %>
+    <% if flash[:message] %>
+      <div class="info">
+        <div><%= flash[:message] %></div>
+      </div>
+    <% end %>
+    <ul>
+      <li>
+        <label class="desc">Docx file:</label>
+        <div>
+          <%= custom_file_field('conversion[uploaded_data]') %>
+          <label>Please, specify DOCX file to convert</label>
+        </div>
+      </li>
+      <center>
+        <li class="buttons">
+          <%= f.submit 'Convert to doc', :class => 'btTxt' %>        
+        </li>
+      </center>
+      <li class="section first" style="text-align: right; margin-right: -2px;">
+        <div style="margin-top: 20px; margin-bottom: 0px;"><%= link_to 'Other convertions', comments_path %></div>
+      </li>
+    </ul>
   <% end %>
+    
 </div>
+
+
+
+<br>
+
+
+

@@ -1,0 +1,204 @@
+/* - - - Custom Theme - - - */
+
+/* Logo */
+h1 a {
+	min-height:0;
+	height:40px;
+}
+
+/* Backgrounds */
+body{
+	background-image:none;
+	background-color:#3a301c;
+}
+h1{
+	background-image:none;
+	background-color:#3f7696;
+}
+#container, body.embed{
+	background-color:#eadea1;
+}
+.tab {
+    background-color:#eadea1;
+}
+
+.wufoo input.text, .wufoo textarea.textarea{
+	background:#ffffff url(../images/fieldbg.gif) repeat-x top;
+}
+.wufoo .focused{
+	background-color:#cfc381;
+}
+.wufoo .instruct{
+	background-color:#808355;
+}
+
+/* Borders */
+#container{
+	border:0 solid #cccccc;
+}
+.wufoo .info{
+	border-bottom:1px solid #cfc381;
+}
+.wufoo .section{
+	border-top:1px solid #cfc381;
+}
+.wufoo input.text, .wufoo textarea.textarea{
+	
+}
+.wufoo .instruct{
+	border:0 solid #e6e6e6;
+}
+
+/* Typography */
+.wufoo .info h2{
+	font-size:160%;
+	font-family:inherit;
+	
+	
+	color:#000000;
+}
+.wufoo .info div{
+	font-size:95%;
+	font-family:inherit;
+	
+	
+	color:#444444;
+}
+.wufoo .section h3{
+	font-size:110%;
+	font-family:inherit;
+	
+	
+	color:#330000;
+}
+.wufoo .section div{
+	font-size:85%;
+	font-family:inherit;
+	
+	
+	color:#444444;
+}
+
+.wufoo .graph h3{
+	color:#330000;
+}
+.wufoo .footer{
+	color:#330000;
+}
+.wufoo .footer span{
+	color:#444444;
+}
+
+
+.wufoo label.desc{
+	font-size:95%;
+	font-family:inherit;
+	
+	
+	color:#333333;
+}
+.wufoo li div, .wufoo li span, .wufoo li div label, .wufoo li span label{
+	font-family:inherit;
+	color:#333333;
+}
+.wufoo label.choice{
+	font-size:100%;
+	font-family:inherit;
+	
+	
+	color:#333333;
+}
+.wufoo input.text, .wufoo textarea.textarea, .wufoo select.select{
+	font-size:100%;
+	font-family:inherit;
+	
+	
+	color:#333333;
+}
+.wufoo .instruct{
+	font-size:80%;
+	font-family:inherit;
+	
+	
+	color:#ffffff;
+}
+.altInstruct .instruct, .wufoo li.leftHalf .instruct, .wufoo li.rightHalf .instruct{
+	color:#333333;
+	background:none;
+	border:none;
+	font-size:9px;
+}
+.wufoo input.btTxt{
+	
+	
+	
+	
+	
+}
+.wufoo li.focused label.desc{
+	
+	
+	
+	
+	color:#000000;
+}
+.wufoo li.focused div, .wufoo li.focused span, .wufoo li.focused div label, .wufoo li.focused span label{
+	
+	color:#000000;
+}
+
+.confirm h2{
+	font-family:inherit;
+	color:#333333;
+}
+
+/* Likert Backgrounds*/
+
+.likert table{
+	background-color:#eadea1;
+}
+.likert thead td, .likert thead th{
+	background-color:#d3c891;
+}
+.likert tbody tr.alt td, .likert tbody tr.alt th{
+	background-color:#e1d59b;
+}
+
+/* Likert Borders */
+
+.likert table, .likert th, .likert td{
+	border-color:#ccc18c;
+}
+.likert td{
+	border-left:1px solid #bbb281;
+}
+
+/* Likert Typography */
+
+.likert caption, .likert thead td, .likert tbody th{
+	color:#333333;
+	font-family:inherit;
+}
+.likert label{
+	color:#474747;
+	font-family:inherit;
+}
+.likert caption, .likert tbody th{
+	font-size:95%;
+}
+
+/* Likert Hover */
+
+.likert tbody tr:hover td, .likert tbody tr:hover th, .likert tbody tr:hover label{
+	background-color:#cfc381;
+	color:#000000;
+}
+.likert tbody tr:hover td{
+	border-left:1px solid #a69c67;
+}
+
+
+/* Drop Shadows */
+#top, #bottom{
+	visibility:visible;
+}

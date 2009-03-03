@@ -2,7 +2,7 @@
 module ApplicationHelper
   
   def custom_file_field(name)
-    "<input type='file' name='#{name}' />"
+    "<input type='file' name='#{name}' class='field file' />"
   end
   
 end

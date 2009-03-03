@@ -4,4 +4,8 @@ class DashboardController < ApplicationController
     @conversion = Conversion.new
   end
   
+  def show2
+    
+  end
+  
 end

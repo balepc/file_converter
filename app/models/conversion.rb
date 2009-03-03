@@ -17,7 +17,7 @@ class Conversion < ActiveRecord::Base
   end
   
   def valid_format?
-    self.content_type == DOCX_FORMAT or self.filename.include?('docx')
+    self.content_type == DOCX_FORMAT or (self.filename and self.filename.include?('docx'))
   end
   
   def do_convertions
