@@ -16,9 +16,5 @@ class ConversionsController < ApplicationController
       redirect_to '/'
     end
   end
-  
-  def try
-    raise "aaa"
-  end
-  
+
 end

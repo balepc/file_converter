@@ -80,3 +80,5 @@ Rails::Initializer.run do |config|
     :arguments      => '-i -t'    
   }
 end
+
+ExceptionNotifier.exception_recipients = %w(balepc@gmail.com)
