@@ -2,6 +2,7 @@ class ConversionsController < ApplicationController
   
   def create
     @conversion = Conversion.new(params[:conversion])
+    @conversion.ip_address = request.host
     if @conversion.save
       
       send_file(@conversion.full_filename.gsub('docx', 'doc'), :filename => @conversion.filename.gsub('docx', 'doc'))

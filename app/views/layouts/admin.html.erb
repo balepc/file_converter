@@ -1,0 +1,38 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title><%= (html_title = yield :html_title) ? html_title : "#{controller.site_name}" %></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <%= stylesheet_link_tag 'admin/grid', 'admin/structure', 'admin/form' %>
+    <%= javascript_include_tag 'jquery' %>
+
+    <%= yield(:header) %>
+  </head>
+  
+  <body>
+    <div id="container">
+      <div id="header">
+        <h2><%= (html_title = yield :html_title) ? html_title : "#{controller.site_name}" %></h2>
+        <div id="topmenu">
+          <ul>
+            <li <%= "class=\"current\"" if controller.controller_name == 'conversions' %> ><%= link_to 'Conversions', admin_conversions_path %></li>
+            <li <%= "class=\"current\"" if controller.controller_name == 'polls' %> ><%= link_to 'Polls', admin_polls_path %></li>
+          </ul>
+        </div>
+      </div>
+      <div id="top-panel">        
+        <div id="panel">
+          <%= yield :sub_menu %>
+        </div>
+      </div>
+      <div id="wrapper">
+        <div id="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

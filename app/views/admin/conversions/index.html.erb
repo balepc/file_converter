@@ -1,0 +1,21 @@
+<% content_for :sub_menu do %>
+  
+<% end %>
+
+<table width="100%" class="grid">
+  <tr>
+    <th>Name</th>
+    <th>IP Address</th>
+    
+    <th>&nbsp;</th>
+  </tr>
+  
+  <% @conversions.each do |conversion| %>
+    <tr class="<%= cycle('odd', 'even')  %>" >
+      <td align=right><%= conversion.filename %></td>
+      <td><%= conversion.ip_address %></td>
+      
+      <td><%= link_to 'download', admin_conversion_path(conversion.id) %></td>
+    </tr>
+  <% end %>
+</table>

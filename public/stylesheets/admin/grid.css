@@ -1,0 +1,5 @@
+.grid th {margin: 1px; padding: 5px; background-color: #DCDCDC;}
+.grid, .sortable tr {text-align: center;}
+.grid tr.even th { background-color: #C0C0C0; padding: 5px; padding-right: 5px;}
+.grid tr.odd td { background-color: #E7E4D3; padding-left: 5px; padding-right: 5px;}
+.grid tr.even td { background-color: #F1EFE2; padding: 5px; padding-right: 5px;}

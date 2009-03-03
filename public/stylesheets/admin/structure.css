@@ -1,0 +1,90 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font-size: 12px;
+    font-family: Arial, Tahoma, Verdana;
+}
+a, a:visited{
+    text-decoration:none;
+}
+img{
+    border:0;
+}
+p{
+    padding:3px;
+}
+ 
+/*********************
+Main
+*********************/
+#container{
+    width:960px;
+    margin-left:auto;
+    margin-right:auto;
+}
+#header{
+    width:960px;
+}
+#header h2{
+    margin-top:5px;
+}
+#content {
+    width:940px;
+    float:left;
+    margin:10px 0 10px 0;
+    padding:10px;
+}
+#footer{
+    clear:both;
+    padding:5px;
+    margin-top:10px;
+}
+ 
+#topmenu{
+    margin-top:10px;
+    width:960px;
+    float:left;
+    voice-family:inherit;
+    background:#E1D4C0;
+}
+#topmenu ul{
+    list-style:none;
+    line-height:25px;
+}
+#topmenu li{
+    display:inline;
+}
+#topmenu a, #topmenu a:visited{
+    padding:5px 12px 5px 12px;
+    text-decoration:none;
+}
+#topmenu .current a, #topmenu .current a:hover, #topmenu .current a:visited {
+    padding:5px 12px 5px 12px;
+    font-weight:bold;
+}
+ 
+#top-panel{
+    background:#CDBFAC;
+    padding:5px;
+    height:20px;
+    float:left;
+    width:950px;
+}
+#top-panel ul{
+    list-style:none;
+}
+#top-panel ul li{
+    display:inline;
+    line-height:20px;
+}
+#top-panel ul li a{
+    padding-left:19px;
+    text-decoration:none;
+    margin:0 3px;
+    display:inline-block;
+}
+#top-panel a:hover{
+    text-decoration:underline;
+}
