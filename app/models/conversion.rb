@@ -31,6 +31,5 @@ class Conversion < ActiveRecord::Base
     odt.destroy_master
     odt.destroy_child
   end
-    
   
 end

@@ -17,4 +17,8 @@ class ConversionsController < ApplicationController
     end
   end
   
+  def try
+    raise "aaa"
+  end
+  
 end
