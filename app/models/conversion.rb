@@ -22,14 +22,19 @@ class Conversion < ActiveRecord::Base
   
   def do_convertions
     return unless valid_format?
-    odt = DocxOdt.new(self.full_filename)
-    odt.convert!
-    
-    doc = OdtDoc.new(odt.child_filename)
-    doc.convert!
-    
-    odt.destroy_master
-    odt.destroy_child
+    return if converted?
+    timer = Time.now
+      odt = DocxOdt.new(self.full_filename)
+      odt.convert!
+
+      doc = OdtDoc.new(odt.child_filename)
+      doc.convert!
+
+      odt.destroy_master
+      odt.destroy_child
+    self.converted = true
+    self.spent = Time.now - timer
+    self.save
   end
   
 end

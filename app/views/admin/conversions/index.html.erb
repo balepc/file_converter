@@ -6,6 +6,7 @@
   <tr>
     <th>Name</th>
     <th>IP Address</th>
+    <th>Spent</th>
     
     <th>&nbsp;</th>
   </tr>
@@ -14,6 +15,7 @@
     <tr class="<%= cycle('odd', 'even')  %>" >
       <td align=right><%= conversion.filename %></td>
       <td><%= conversion.ip_address %></td>
+      <td><%= conversion.spent %> sec</td>
       
       <td><%= link_to 'download', admin_conversion_path(conversion.id) %></td>
     </tr>
