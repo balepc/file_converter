@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to comments_path
     else
+      @comments = Comment.find(:all)
       render :action => 'index'
     end
   end

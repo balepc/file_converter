@@ -23,7 +23,7 @@ class Conversion < ActiveRecord::Base
   
   def rename_file
     return false unless self.filename
-    m = self.filename.match(/[a-zA-Z0-9._]+/)
+    m = self.filename.match(/[a-zA-Z0-9._-]+/)
     if m and self.filename.size != m[0].size
       ext = File.extname(self.filename)
 #      raise "#{Conversion.count+1}#{ext}".inspect
