@@ -9,6 +9,7 @@ class Base
   end
   
   def convert!
+    puts "CONV: from #{master_filename} to #{child_filename}"
     command
     
     # retry
