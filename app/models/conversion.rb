@@ -18,7 +18,7 @@ class Conversion < ActiveRecord::Base
   end
   
   def valid_format?
-    self.content_type == DOCX_FORMAT or (self.filename and File.extname(self.filename)=='.docx')
+    self.content_type == DOCX_FORMAT or (self.filename and File.extname(self.filename).downcase == '.docx')
   end
   
   def rename_file
