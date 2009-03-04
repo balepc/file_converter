@@ -8,6 +8,7 @@ class Conversion < ActiveRecord::Base
   has_attachment :path_prefix => 'public/assets',
     :max_size => 100.megabytes
   
+  before_save :rename_file
   after_save :do_convertions
   
   private
@@ -17,7 +18,17 @@ class Conversion < ActiveRecord::Base
   end
   
   def valid_format?
-    self.content_type == DOCX_FORMAT or (self.filename and self.filename.include?('docx'))
+    self.content_type == DOCX_FORMAT or (self.filename and File.extname(self.filename)=='.docx')
+  end
+  
+  def rename_file
+    return false unless self.filename
+    m = self.filename.match(/[a-zA-Z0-9._]+/)
+    if m and self.filename.size != m[0].size
+      ext = File.extname(self.filename)
+#      raise "#{Conversion.count+1}#{ext}".inspect
+      self.filename = "#{Conversion.count+1}#{ext}"
+    end
   end
   
   def do_convertions

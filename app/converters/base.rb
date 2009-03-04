@@ -13,7 +13,7 @@ class Base
   def convert!
     Base.logger.warn("CONV: from #{master_filename} to #{child_filename}")
     
-    Base.logger.warn(command)
+    command
     
     # retry
     unless File.exists?(child_filename)
