@@ -8,7 +8,7 @@ class ConversionsController < ApplicationController
         send_file(@conversion.full_filename.gsub('docx', 'doc'), :filename => @conversion.filename.gsub('docx', 'doc'))
       else
         AdminNotifier.deliver_cant_convert(@conversion.filename)
-        flash[:message] = 'Failed to convert your files. You can leave you email and we\'ll informr you when the bug is resolved'
+        flash[:message] = 'Failed to convert your file. You can leave you email and we\'ll inform you when the bug is resolved'
         redirect_to '/'
       end
       

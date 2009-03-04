@@ -10,6 +10,10 @@ class Base
   
   def convert!
     command
+    
+    # retry
+    command unless File.exists?(child_filename)
+    
     raise FormatException.new("from #{self.from} to #{self.to}") unless File.exists?(child_filename)
   end
   
