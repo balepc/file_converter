@@ -35,6 +35,11 @@ class Conversion < ActiveRecord::Base
     self.converted = true
     self.spent = Time.now - timer
     self.save
+    
+  rescue Exception => ex
+    self.exception = ex.message
+    self.converted = true
+    self.save
   end
   
 end
