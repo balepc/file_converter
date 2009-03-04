@@ -11,9 +11,9 @@ class Base
   end
   
   def convert!
-    Base.logger.info("CONV: from #{master_filename} to #{child_filename}")
+    Base.logger.warn("CONV: from #{master_filename} to #{child_filename}")
     
-    command
+    Base.logger.warn(command)
     
     # retry
     unless File.exists?(child_filename)
