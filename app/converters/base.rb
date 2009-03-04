@@ -1,19 +1,25 @@
 require 'format_exception'
+require 'conversion_logger'
 
 class Base
   
   attr_accessor :master_filename
+  @@logger = ConversionLogger.new
   
   def initialize(filename)
     self.master_filename = filename
   end
   
   def convert!
-    puts "CONV: from #{master_filename} to #{child_filename}"
+    Base.logger.info("CONV: from #{master_filename} to #{child_filename}")
+    
     command
     
     # retry
-    command unless File.exists?(child_filename)
+    unless File.exists?(child_filename)
+      sleep(1)
+      command 
+    end
     
     raise FormatException.new("from #{self.from} to #{self.to}") unless File.exists?(child_filename)
   end
@@ -30,5 +36,8 @@ class Base
     FileUtils.rm(self.child_filename)
   end
   
+  def self.logger
+    @@logger
+  end
   
 end

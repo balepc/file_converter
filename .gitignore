@@ -26,5 +26,7 @@ nbproject
 db/development_structure.sql
 config/environments/staging.rb
 log/development.log
+log/conversion.log
+log/con
 public/assets
 *~
