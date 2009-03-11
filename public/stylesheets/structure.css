@@ -24,7 +24,7 @@ body {
 
 #container, #top, #bottom, #footer{
     margin:0 auto;
-    width:450px;
+    width:350px;
 }
 #top, #bottom{
     width:460px;

@@ -30,4 +30,5 @@ log/conversion.log
 log/newrelic_agent.3000.log
 log/con
 public/assets
+log/soffice.pid
 *~
