@@ -7,6 +7,7 @@
     <th>Name</th>
     <th>To</th>
     
+    <th>Size (bytes)</th>
     <th>Spent</th>
     <th>Ex</th>
     
@@ -18,6 +19,7 @@
       <td align=right><%= conversion.asset.filename[0..30] %></td>
       <td><%= conversion.to %></td>
       
+      <td><%= conversion.asset.size %></td>
       <td><%= conversion.spent %> sec</td>
       <td><%= conversion.conv_exceptions[0].message unless conversion.conv_exceptions.empty? %></td>
       

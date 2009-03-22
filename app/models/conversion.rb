@@ -108,7 +108,7 @@ class Conversion < ActiveRecord::Base
   end
   
   def report_long_time
-    true
+    AdminNotifier.deliver_long_convert(self) if self.spent.to_i > 10
   end
   
 end
