@@ -22,8 +22,8 @@ class AssetsController < ApplicationController
   
   def convert
     asset = Asset.find(params[:id])    
-    
-    if (conversion = Conversion.convert(asset, params[:format]))
+    conversion = Conversion.convert(asset, params[:format])
+    if (conversion.converted?)
       send_file(conversion.result_filename, :filename => File.basename(conversion.result_filename) )
     else
       AdminNotifier.deliver_cant_convert(asset.filename)

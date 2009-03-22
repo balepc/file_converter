@@ -6,8 +6,11 @@ require 'converters/odt_pdf'
 class Conversion < ActiveRecord::Base
 
   belongs_to :asset, :foreign_key => :asset_from_id
+  has_many :conv_exceptions
   validates_presence_of :from
   validates_presence_of :to
+  
+  after_save :report_long_time
    
   attr_accessor :to_format
   
@@ -15,7 +18,6 @@ class Conversion < ActiveRecord::Base
     unless (existing = Conversion.find(:first, :conditions => ["asset_from_id=? AND `conversions`.from=? AND `conversions`.to=?", asset.id, asset.asset_type.code, to_format]))
       conv = Conversion.new(:asset => asset, :to_format => to_format)
       conv.convert
-      conv
     else
       existing
     end
@@ -33,12 +35,13 @@ class Conversion < ActiveRecord::Base
     
     self.converted = true
     self.save
+    self
     
   rescue FormatException => ex
-    
-    self.exception = ex.message
+    self.conv_exceptions.build(:message => ex.message)
     self.converted = false
-    false
+    self.save
+    self
   end
   
   def result_filename
@@ -78,24 +81,34 @@ class Conversion < ActiveRecord::Base
   
   def do_convertions
     if docx_to_doc?
-      if (conv = Conversion.convert(self.asset, 'odt'))
+      if (conv = Conversion.convert(self.asset, 'odt') and conv.converted?)
         doc = OdtDoc.new(conv.result_filename)
         doc.convert!
+      else
+        raise FormatException.new
       end
     elsif docx_to_pdf?
-      if (conv = Conversion.convert(self.asset, 'odt'))
+      if (conv = Conversion.convert(self.asset, 'odt') and conv.converted?)
         doc = OdtPdf.new(conv.result_filename)
         doc.convert!
+      else
+        raise FormatException.new
       end
     elsif docx_to_txt?
-      if (conv = Conversion.convert(self.asset, 'odt'))
+      if (conv = Conversion.convert(self.asset, 'odt') and conv.converted?)
         doc = OdtTxt.new(conv.result_filename)
         doc.convert!
+      else
+        raise FormatException.new
       end
     elsif docx_to_odt?
       odt = DocxOdt.new(self.asset.full_filename)
       odt.convert!
     end
+  end
+  
+  def report_long_time
+    true
   end
   
 end
