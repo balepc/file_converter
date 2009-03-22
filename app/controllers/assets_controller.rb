@@ -12,6 +12,9 @@ class AssetsController < ApplicationController
     asset = Asset.new(params[:conversion])
     if asset.save and asset.valid_from_format?
       redirect_to asset_path(asset)
+    elsif params[:conversion][:uploaded_data].blank?
+      flash[:message] = 'File not specified'
+      redirect_to '/'
     else
       AdminNotifier.deliver_wrong_format(asset.filename)
       flash[:message] = 'Unsupported format' unless asset.valid_from_format?

@@ -9,7 +9,7 @@ class Asset < ActiveRecord::Base
   has_many :conversions
 
   def valid_from_format?
-    self.asset_type.docx?
+    self.asset_type.docx? if self.asset_type
   end
   
   def asset_type
