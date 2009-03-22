@@ -16,7 +16,7 @@
   
   <% @conversions.each do |conversion| %>
     <tr class="<%= cycle('odd', 'even')  %>" >
-      <td align=right><%= conversion.asset.filename[0..30] %></td>
+      <td align=right><%= conversion.asset.filename[0..30] if conversion.asset %></td>
       <td><%= conversion.to %></td>
       
       <td><%= conversion.asset.size %></td>

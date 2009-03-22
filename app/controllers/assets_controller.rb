@@ -13,11 +13,12 @@ class AssetsController < ApplicationController
     asset = Asset.new(params[:conversion])
     if asset.save and asset.valid_from_format?
       conversion = Conversion.convert(asset, 'txt')
-            
-      full_text = File.read(conversion.result_filename)
-      asset.update_attribute(:content_full_text, full_text)
-      asset.update_attribute(:content_keywords, '')
       
+      if conversion
+        full_text = File.read(conversion.result_filename)
+        asset.update_attribute(:content_full_text, full_text)
+        asset.update_attribute(:content_keywords, '')
+      end
       
       redirect_to asset_path(asset)
     elsif params[:conversion][:uploaded_data].blank?
