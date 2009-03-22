@@ -1,6 +1,7 @@
 require File.dirname(__FILE__)+"/attacheable/file_naming"
 require File.dirname(__FILE__)+"/attacheable/uploading"
 require 'net/http'
+require 'mime/types'
 class ActiveRecord::Base
   #
   # In model write has_attachment (conflicts with acts_as_attachment) with options:

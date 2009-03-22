@@ -1,0 +1,21 @@
+<% form_for :asset, @asset, :url => assets_path, :html => {:multipart => true, :id => 'convert_form', :class=>'wufoo'} do |f| %>
+  <% if flash[:message] %>
+    <div class="info">
+      <div><%= flash[:message] %></div>
+    </div>
+  <% end %>
+  <ul>
+    <li>
+      <label class="desc">Docx file:</label>
+      <div>
+        <%= custom_file_field('conversion[uploaded_data]') %>
+        <label>Please, specify DOCX file to convert</label>
+      </div>
+    </li>
+    <center>
+      <li class="buttons">
+        <%= f.submit 'Process', :class => 'btTxt' %>        
+      </li>
+    </center>
+  </ul>
+<% end %>

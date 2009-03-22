@@ -3,7 +3,7 @@ require 'converters/base'
 class DocxOdt < Base
   
   def command
-    `OdfConverter /i #{master_filename}`
+    `OdfConverter /i #{self.master_filename}`
   end
   
   def from

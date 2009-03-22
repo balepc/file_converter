@@ -4,13 +4,12 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :conversions
   end
   
-  map.root :controller => 'Dashboard', :action => 'show'
+  map.root :controller => 'Assets', :action => 'new'
   
-  map.resource :dashboard
   map.resources :conversions
+  map.resources :assets, :member => {:convert => :post}
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
-  
   
 end

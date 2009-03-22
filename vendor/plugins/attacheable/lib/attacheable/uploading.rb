@@ -33,8 +33,8 @@ module Attacheable
       return unless @tempfile
       self.content_type = @tempfile.content_type if @tempfile.respond_to?(:content_type)
       
-      if defined?(MIME) && defined?(MIME::Types) &&
-          (content_type.blank? || content_type == "application/octet-stream")
+      if content_type.blank? || content_type == "application/octet-stream" ||
+          content_type == "application/force-download"
         mime = MIME::Types.type_for(filename).first
         self.content_type = mime.simplified if mime
       end

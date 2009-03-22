@@ -4,6 +4,7 @@ require 'conversion_logger'
 class Base
   
   attr_accessor :master_filename
+  
   @@logger = ConversionLogger.new
   
   def initialize(filename)
@@ -25,7 +26,7 @@ class Base
   end
   
   def child_filename
-    self.master_filename.gsub(self.from, self.to)
+    self.master_filename.gsub(/#{self.from}$/, self.to)
   end
   
   def destroy_master

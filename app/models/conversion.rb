@@ -1,56 +1,101 @@
 require 'converters/docx_odt'
 require 'converters/odt_doc'
+require 'converters/odt_txt'
+require 'converters/odt_pdf'
 
 class Conversion < ActiveRecord::Base
+
+  belongs_to :asset, :foreign_key => :asset_from_id
+  validates_presence_of :from
+  validates_presence_of :to
+   
+  attr_accessor :to_format
   
-  DOCX_FORMAT = 'docx'
-  
-  has_attachment :path_prefix => 'public/assets',
-    :max_size => 100.megabytes
-  
-  before_save :rename_file
-  after_save :do_convertions
-  
-  private
-  
-  def validate
-    self.errors.add(:content_type, 'Unsupported') unless valid_format?
-  end
-  
-  def valid_format?
-    self.content_type == DOCX_FORMAT or (self.filename and File.extname(self.filename).downcase == '.docx')
-  end
-  
-  def rename_file
-    return false unless self.filename
-    m = self.filename.match(/[a-zA-Z0-9._-]+/)
-    if m and self.filename.size != m[0].size
-      ext = File.extname(self.filename)
-#      raise "#{Conversion.count+1}#{ext}".inspect
-      self.filename = "#{Conversion.count+1}#{ext}"
+  def Conversion.convert(asset, to_format)
+    unless (existing = Conversion.find(:first, :conditions => ["asset_from_id=? AND `conversions`.from=? AND `conversions`.to=?", asset.id, asset.asset_type.code, to_format]))
+      conv = Conversion.new(:asset => asset, :to_format => to_format)
+      conv.convert
+      conv
+    else
+      existing
     end
   end
   
-  def do_convertions
-    return unless valid_format?
-    return if converted?
+  def convert
+    return false if not valid_format? or not valid_transition?
+    return false if converted?
+    
     timer = Time.now
-      odt = DocxOdt.new(self.full_filename)
-      odt.convert!
-
-      doc = OdtDoc.new(odt.child_filename)
-      doc.convert!
-
-      odt.destroy_master
-      odt.destroy_child
-    self.converted = true
+    
+      do_convertions
+      
     self.spent = Time.now - timer
+    
+    self.converted = true
     self.save
     
-  rescue Exception => ex
+  rescue FormatException => ex
+    
     self.exception = ex.message
-    self.converted = true
-    self.save
+    self.converted = false
+    false
+  end
+  
+  def result_filename
+    self.asset.full_filename.gsub(/#{self.from}$/, self.to)
+  end
+  
+  private
+  def valid_format?
+    self.asset.valid_from_format?
+  end
+  
+  def valid_transition?
+    from = self.asset.asset_type 
+    to = AssetType.find_by_code(self.to_format)
+    
+    self.from ||= from.code
+    self.to ||= to.code
+    
+    from.converts?(to)
+  end
+  
+  def docx_to_doc?
+    self.asset.asset_type.docx? and AssetType.find_by_code(self.to_format).doc?
+  end
+  
+  def docx_to_pdf?
+    self.asset.asset_type.docx? and AssetType.find_by_code(self.to_format).pdf?
+  end
+  
+  def docx_to_txt?
+    self.asset.asset_type.docx? and AssetType.find_by_code(self.to_format).txt?
+  end
+  
+  def docx_to_odt?
+    self.asset.asset_type.docx? and AssetType.find_by_code(self.to_format).odt?
+  end
+  
+  def do_convertions
+    if docx_to_doc?
+      if (conv = Conversion.convert(self.asset, 'odt'))
+        doc = OdtDoc.new(conv.result_filename)
+        doc.convert!
+      end
+    elsif docx_to_pdf?
+      if (conv = Conversion.convert(self.asset, 'odt'))
+        doc = OdtPdf.new(conv.result_filename)
+        doc.convert!
+      end
+    elsif docx_to_txt?
+      if (conv = Conversion.convert(self.asset, 'odt'))
+        doc = OdtTxt.new(conv.result_filename)
+        doc.convert!
+      end
+    elsif docx_to_odt?
+      odt = DocxOdt.new(self.asset.full_filename)
+      odt.convert!
+    end
   end
   
 end
