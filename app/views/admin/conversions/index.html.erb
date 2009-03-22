@@ -19,11 +19,11 @@
       <td align=right><%= conversion.asset.filename[0..30] if conversion.asset %></td>
       <td><%= conversion.to %></td>
       
-      <td><%= conversion.asset.size %></td>
+      <td><%= conversion.asset.size if conversion.asset %></td>
       <td><%= conversion.spent %> sec</td>
       <td><%= conversion.conv_exceptions[0].message unless conversion.conv_exceptions.empty? %></td>
       
-      <td><%= link_to 'download', asset_path(conversion.asset) %></td>
+      <td><%= link_to 'download', asset_path(conversion.asset) if conversion.asset %></td>
     </tr>
   <% end %>
 </table>
