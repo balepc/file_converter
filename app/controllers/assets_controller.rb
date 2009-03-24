@@ -1,16 +1,19 @@
 class AssetsController < ApplicationController
+  include AuthHelper
+  
+  before_filter :find_asset, :only => [:show, :convert]
+  before_filter :permission_required, :only => [:show, :convert]
   
   def new
     @asset = Asset.new
   end
   
   def show
-    @asset = Asset.find(params[:id])
     @full_text = @asset.content_full_text
   end
   
   def create
-    asset = Asset.new(params[:conversion])
+    asset = Asset.new(params[:conversion].merge(:ip_address => request.remote_ip))
     if asset.save and asset.valid_from_format?
       conversion = Conversion.convert(asset, 'txt')
       
@@ -33,15 +36,23 @@ class AssetsController < ApplicationController
   end
   
   def convert
-    asset = Asset.find(params[:id])    
-    conversion = Conversion.convert(asset, params[:format])
+    conversion = Conversion.convert(@asset, params[:format])
     if (conversion.converted?)
       send_file(conversion.result_filename, :filename => File.basename(conversion.result_filename) )
     else
-      AdminNotifier.deliver_cant_convert(asset.filename)
+      AdminNotifier.deliver_cant_convert(@asset.filename)
       flash[:message] = 'Failed to convert your file. Please use the "Feedback" tab to describe your problem'
       redirect_to '/'
     end
+  end
+  
+  private
+  def permission_required
+    owner? || token?
+  end
+  
+  def find_asset
+    @asset = Asset.find(params[:id])
   end
   
 end

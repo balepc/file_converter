@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 #    authenticate_or_request_with_http_basic do |username, password|
 #      username == "admin" && password == "admin"
 #    end
-    request.remote_ip == '83.99.195.212'
+    admin?
   end
   
   def site_name
