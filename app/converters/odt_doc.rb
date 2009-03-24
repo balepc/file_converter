@@ -1,5 +1,3 @@
-require 'converters/base'
-
 class OdtDoc < Base
   
   def command

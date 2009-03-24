@@ -24,6 +24,14 @@ class Asset < ActiveRecord::Base
     self.user = User.get(ip_address)
   end
   
+  def docx?
+    self.asset_type.code == 'docx'
+  end
+  
+  def xlsx?
+    self.asset_type.code == 'xlsx'
+  end
+  
   private
   def generate_token
     AuthToken.create(:asset => self) if self.auth_token.nil?

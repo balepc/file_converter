@@ -3,10 +3,16 @@ class AssetType < ActiveRecord::Base
   @@conerters = {
     :docx => {
       :doc => ['odt', OdtDoc],
-      :pdf => ['odt',OdtPdf],
-      :txt => ['odt',OdtTxt],
+      :pdf => ['odt', OdtPdf],
+      :txt => ['odt', OdtTxt],
       :odt => DocxOdt,
-      :rtf => ['odt',OdtRtf]
+      :rtf => ['odt', OdtRtf]
+    },
+    :xlsx => {
+      :xls => ['ods', OdsXls],
+      :csv => ['ods', OdsCsv],
+      :ods => XlsxOds,
+      :pdf => ['ods', OdsPdf]
     }
   }
   

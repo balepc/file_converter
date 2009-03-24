@@ -1,5 +1,3 @@
-require 'converters/base'
-
 class OdtTxt < Base
   
   def command

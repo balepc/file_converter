@@ -14,13 +14,7 @@ class AssetsController < ApplicationController
   def create
     asset = Asset.new(params[:conversion].merge(:ip_address => request.remote_ip))
     if asset.save and asset.valid_from_format?
-      conversion = Conversion.convert(asset, 'txt')
-      
-      if conversion
-        full_text = File.read(conversion.result_filename)
-        asset.update_attribute(:content_full_text, full_text)
-        asset.update_attribute(:content_keywords, '')
-      end
+      keywords(asset)
       
       redirect_to asset_path(asset)
     elsif params[:conversion][:uploaded_data].blank?
@@ -52,6 +46,19 @@ class AssetsController < ApplicationController
   
   def find_asset
     @asset = Asset.find(params[:id])
+  end
+  
+  def keywords(asset)
+    if asset.docx?
+      conversion = Conversion.convert(asset, 'txt')
+    elsif asset.xlsx?
+      conversion = Conversion.convert(asset, 'csv')
+    end
+    if conversion and conversion.converted?
+      full_text = File.read(conversion.result_filename)
+      asset.update_attribute(:content_full_text, full_text)
+      asset.update_attribute(:content_keywords, '')
+    end
   end
   
 end

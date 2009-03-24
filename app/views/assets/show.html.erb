@@ -4,11 +4,16 @@
 </center>
 
 <ul style="list-style-type: none;">
-  <li><%= link_to doc_filename(@asset), convert_asset_path(@asset, :format=>:doc), :method => :post %></li>
-  <li><%= link_to pdf_filename(@asset), convert_asset_path(@asset, :format=>:pdf), :method => :post %></li>
-  <li><%= link_to odt_filename(@asset), convert_asset_path(@asset, :format=>:odt), :method => :post %></li>
-  <li><%= link_to txt_filename(@asset), convert_asset_path(@asset, :format=>:txt), :method => :post %></li>
-  <li><%= link_to rtf_filename(@asset), convert_asset_path(@asset, :format=>:rtf), :method => :post %></li>
+  <% if @asset.docx? %>
+    <% ['doc', 'pdf', 'odt', 'txt', 'rtf'].each do |format| %>
+      <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
+    <% end %>
+  <% elsif @asset.xlsx? %>
+    <% ['xls', 'csv', 'pdf', 'ods'].each do |format| %>
+      <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
+    <% end %>
+  <% end %>
+    
 </ul>
 <br>
 <center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>

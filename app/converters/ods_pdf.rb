@@ -1,11 +1,11 @@
-class OdtPdf < Base
+class OdsPdf < Base
   
   def command
     `unoconv -p 2002 --format=pdf #{self.master_filename}`
   end
   
   def from
-    'odt'
+    'ods'
   end
   
   def to

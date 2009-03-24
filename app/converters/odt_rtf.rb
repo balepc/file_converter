@@ -1,5 +1,3 @@
-require 'converters/base'
-
 class OdtRtf < Base
   
   def command
