@@ -1,5 +1,4 @@
 class AssetsController < ApplicationController
-  include AuthHelper
   
   before_filter :find_asset, :only => [:show, :convert]
   before_filter :permission_required, :only => [:show, :convert]

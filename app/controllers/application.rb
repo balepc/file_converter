@@ -3,6 +3,8 @@
 
 class ApplicationController < ActionController::Base
   include ExceptionNotifiable
+  include AuthHelper
+  
   helper :all # include all helpers, all the time
   protect_from_forgery # :secret => '5860b3174e338b3efa55ecb2402ceb12'
   
