@@ -13,7 +13,7 @@ class Asset < ActiveRecord::Base
   after_save :generate_token
 
   def valid_from_format?
-    self.asset_type.docx? if self.asset_type
+    self.asset_type.valid_from_format? if self.asset_type
   end
   
   def asset_type
