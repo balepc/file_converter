@@ -47,7 +47,7 @@ class AssetsController < ApplicationController
   
   private
   def permission_required
-    owner? || token?
+    redirect_to '/' unless (owner? || token?)
   end
   
   def find_asset
