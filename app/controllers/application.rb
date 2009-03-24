@@ -7,9 +7,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => '5860b3174e338b3efa55ecb2402ceb12'
   
   def authenticate
-    authenticate_or_request_with_http_basic do |username, password|
-      username == "admin" && password == "admin"
-    end
+#    authenticate_or_request_with_http_basic do |username, password|
+#      username == "admin" && password == "admin"
+#    end
+    request.remote_ip == '83.99.195.212'
   end
   
   def site_name

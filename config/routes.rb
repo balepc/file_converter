@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.root :controller => 'conversions', :action => 'index'
     admin.resources :conversions
+    admin.resources :assets, :member => {:download => :get}
   end
   
   map.root :controller => 'Assets', :action => 'new'

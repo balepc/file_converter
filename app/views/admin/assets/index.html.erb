@@ -1,0 +1,22 @@
+<table width="100%" class="grid">
+  <tr>
+    <th>Filename</th>
+    <th>Content-type</th>
+    
+    <th>Size (bytes)</th>
+    
+    <th>&nbsp;</th>
+  </tr>
+  
+  <% @assets.each do |asset| %>
+    <tr class="<%= cycle('odd', 'even')  %>" >
+      <td align=right><%= asset.filename[0..30] %></td>
+      <td><%= asset.content_type %></td>
+      
+      <td><%= asset.size %></td>
+      <td><%= link_to 'download', download_admin_asset_path(asset) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate(@conversions) %>

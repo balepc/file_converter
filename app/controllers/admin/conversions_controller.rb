@@ -3,7 +3,7 @@ class Admin::ConversionsController < ApplicationController
   before_filter :authenticate
   
   def index
-    @conversions = Conversion.paginate :page => params[:page], :order => 'created_at DESC'
+    @conversions = Conversion.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 100
   end
   
   def show
