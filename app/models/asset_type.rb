@@ -13,6 +13,9 @@ class AssetType < ActiveRecord::Base
       :csv => ['ods', OdsCsv],
       :ods => XlsxOds,
       :pdf => ['ods', OdsPdf]
+    },
+    :pptx => {
+      :ppt => []
     }
   }
   
