@@ -2,6 +2,7 @@ require 'converters/docx_odt'
 require 'converters/odt_doc'
 require 'converters/odt_txt'
 require 'converters/odt_pdf'
+require 'converters/odt_rtf'
 
 class Conversion < ActiveRecord::Base
 
@@ -79,6 +80,10 @@ class Conversion < ActiveRecord::Base
     self.asset.asset_type.docx? and AssetType.find_by_code(self.to_format).odt?
   end
   
+  def docx_to_rtf?
+    self.asset.asset_type.docx? and AssetType.find_by_code(self.to_format).rtf?
+  end
+  
   def do_convertions
     if docx_to_doc?
       if (conv = Conversion.convert(self.asset, 'odt') and conv.converted?)
@@ -97,6 +102,13 @@ class Conversion < ActiveRecord::Base
     elsif docx_to_txt?
       if (conv = Conversion.convert(self.asset, 'odt') and conv.converted?)
         doc = OdtTxt.new(conv.result_filename)
+        doc.convert!
+      else
+        raise FormatException.new
+      end
+    elsif docx_to_rtf?
+      if (conv = Conversion.convert(self.asset, 'odt') and conv.converted?)
+        doc = OdtRtf.new(conv.result_filename)
         doc.convert!
       else
         raise FormatException.new

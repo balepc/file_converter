@@ -5,10 +5,10 @@ class AssetType < ActiveRecord::Base
   
   def converts?(to)
     return false unless to
-    return true if (self.docx?) and (to.pdf? or to.odt? or to.txt? or to.doc?)
+    return true if (self.docx?) and (to.pdf? or to.odt? or to.txt? or to.doc? or to.rtf?)
   end
   
-  ['docx', 'doc', 'pdf', 'txt', 'odt'].each do |format|
+  ['docx', 'doc', 'pdf', 'txt', 'odt', 'rtf'].each do |format|
     define_method("#{format}?") { self.code == format }
   end
 

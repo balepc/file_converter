@@ -8,6 +8,7 @@
   <li><%= link_to pdf_filename(@asset), convert_asset_path(@asset, :format=>:pdf), :method => :post %></li>
   <li><%= link_to odt_filename(@asset), convert_asset_path(@asset, :format=>:odt), :method => :post %></li>
   <li><%= link_to txt_filename(@asset), convert_asset_path(@asset, :format=>:txt), :method => :post %></li>
+  <li><%= link_to rtf_filename(@asset), convert_asset_path(@asset, :format=>:rtf), :method => :post %></li>
 </ul>
 <br>
 

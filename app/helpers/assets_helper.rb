@@ -16,9 +16,13 @@ module AssetsHelper
     replace_extension(asset, '.txt')
   end
   
+  def rtf_filename(asset)
+    replace_extension(asset, '.rtf')
+  end
+  
   private
   def replace_extension(asset, to_ext)
-    asset.filename.gsub(File.extname(asset.filename), to_ext)
+    asset.filename.gsub(/#{File.extname(asset.filename)}$/, to_ext)
   end
   
 end
