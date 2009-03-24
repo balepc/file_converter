@@ -9,7 +9,7 @@ module AuthHelper
   end
   
   def token?
-    @asset.token.ok?(params[:token])
+    @asset.auth_token.ok?(params[:token])
   end
   
 end
