@@ -7,7 +7,10 @@ class Asset < ActiveRecord::Base
   validates_presence_of :size
   
   has_many :conversions
+  has_one :auth_token
   belongs_to :user
+  
+  after_save :generate_token
 
   def valid_from_format?
     self.asset_type.docx? if self.asset_type
@@ -19,6 +22,11 @@ class Asset < ActiveRecord::Base
   
   def ip_address=(ip_address)
     self.user = User.get(ip_address)
+  end
+  
+  private
+  def generate_token
+    AuthToken.create(:asset => self) if self.auth_token.nil?
   end
   
 end

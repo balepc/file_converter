@@ -11,7 +11,8 @@
   <li><%= link_to rtf_filename(@asset), convert_asset_path(@asset, :format=>:rtf), :method => :post %></li>
 </ul>
 <br>
-
+<center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>
+<br>
 <div id="ads" style="display:none;">
   <%= @full_text %>
 </div>
