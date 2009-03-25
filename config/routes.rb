@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.root :controller => 'conversions', :action => 'index'
     admin.resources :conversions
     admin.resources :assets, :member => {:download => :get}
+    admin.resources :users
   end
   
   map.root :controller => 'Assets', :action => 'new'

@@ -6,7 +6,7 @@ class Asset < ActiveRecord::Base
   validates_presence_of :filename
   validates_presence_of :size
   
-  has_many :conversions
+  has_many :conversions, :foreign_key => 'asset_from_id'
   has_one :auth_token
   belongs_to :user
   

@@ -1,4 +1,4 @@
-class Admin::ConversionsController < ApplicationController
+class Admin::UsersController < ApplicationController
   layout 'admin'
   before_filter :authenticate
   
