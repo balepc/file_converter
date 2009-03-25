@@ -1,6 +1,6 @@
 <br>
 <center>
-  <b><%= @asset.filename %></b> <small>(<%= @asset.size %> bytes)</small>
+  <b><%= format_long_filenames(@asset.filename, 30)  %></b> <small>(<%= @asset.size %> bytes)</small>
 </center>
 
 <ul style="list-style-type: none;">
