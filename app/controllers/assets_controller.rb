@@ -1,4 +1,5 @@
 class AssetsController < ApplicationController
+  include KeywordsHelper
   
   before_filter :find_asset, :only => [:show, :convert]
   before_filter :permission_required, :only => [:show, :convert]
@@ -14,7 +15,7 @@ class AssetsController < ApplicationController
   def create
     asset = Asset.new(params[:conversion].merge(:ip_address => request.remote_ip))
     if asset.save and asset.valid_from_format?
-      keywords(asset)
+      extract_keywords(asset)
       
       redirect_to asset_path(asset)
     elsif params[:conversion][:uploaded_data].blank?
@@ -48,7 +49,7 @@ class AssetsController < ApplicationController
     @asset = Asset.find(params[:id])
   end
   
-  def keywords(asset)
+  def extract_keywords(asset)
     if asset.docx?
       conversion = Conversion.convert(asset, 'txt')
     elsif asset.xlsx?
@@ -57,7 +58,7 @@ class AssetsController < ApplicationController
     if conversion and conversion.converted?
       full_text = File.read(conversion.result_filename)
       asset.update_attribute(:content_full_text, full_text)
-      asset.update_attribute(:content_keywords, '')
+      asset.update_attribute(:content_keywords, get_keywords(full_text))
     end
   end
   
