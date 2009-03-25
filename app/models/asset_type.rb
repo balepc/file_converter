@@ -15,12 +15,15 @@ class AssetType < ActiveRecord::Base
       :pdf => ['ods', OdsPdf]
     },
     :pptx => {
-      :ppt => []
+      :ppt => ['odp', OdpPpt],
+      :pdf => ['odp', OdpPdf],
+      :odp => PptxOdp
     }
   }
   
   validates_presence_of :mime_type
   validates_presence_of :code
+  validates_uniqueness_of :mime_type
   
   def self.get_converter(from, to)
     @@conerters[from.to_sym][to.to_sym]

@@ -12,6 +12,10 @@
     <% ['xls', 'csv', 'pdf', 'ods'].each do |format| %>
       <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
     <% end %>
+  <% elsif @asset.pptx? %>
+    <% ['ppt', 'odp', 'pdf'].each do |format| %>
+      <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
+    <% end %>
   <% end %>
     
 </ul>

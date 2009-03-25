@@ -32,6 +32,10 @@ class Asset < ActiveRecord::Base
     self.asset_type.code == 'xlsx'
   end
   
+  def pptx?
+    self.asset_type.code == 'pptx'
+  end
+  
   private
   def generate_token
     AuthToken.create(:asset => self) if self.auth_token.nil?
