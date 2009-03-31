@@ -10,6 +10,8 @@ class AssetsController < ApplicationController
   
   def show
     @full_text = @asset.content_full_text
+    @keywords = @asset.content_keywords
+    @description = @full_text
   end
   
   def create
@@ -58,7 +60,7 @@ class AssetsController < ApplicationController
     if conversion and conversion.converted?
       full_text = File.read(conversion.result_filename)
       asset.update_attribute(:content_full_text, full_text)
-      asset.update_attribute(:content_keywords, get_keywords(full_text))
+      asset.update_attribute(:content_keywords, get_keywords(full_text).join(','))
     end
   end
   
