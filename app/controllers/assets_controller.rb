@@ -11,7 +11,7 @@ class AssetsController < ApplicationController
   def show
     @full_text = @asset.content_full_text
     @keywords = @asset.content_keywords
-    @description = @full_text
+#    @description = @full_text
   end
   
   def create
