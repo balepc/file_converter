@@ -6,22 +6,15 @@ set :scm, :git
 set :repository,  "git://github.com/balepc/file_converter.git"
 set :branch, "master"
 
-#set :scm_username, "anton"
-#set :scm_password, "antonpass"
-
-
-#set :deploy_via, :remote_cache
 set :deploy_via, :export
-
-#set :git, "/home/deploy/bin/git"
 
 set :user, 'deploy'
 set :ssh_options, { :forward_agent => true }
 
-ssh_options[:port] = 1488
-role :app, "balepc@gunboat.rails.lv"
-role :web, "balepc@gunboat.rails.lv"
-role :db,  "balepc@gunboat.rails.lv", :primary => true
+ssh_options[:port] = 987
+role :app, "deploy@97.107.129.29"
+role :web, "deploy@97.107.129.29"
+role :db,  "deploy@97.107.129.29", :primary => true
  
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"

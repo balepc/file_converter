@@ -1,15 +1,17 @@
 <table width="100%" class="grid">
   <tr>
     <th>IP address</th>
+    <th>Asset count</th>
     <th>Conv count</th>
-    <th>user count</th>
+    
   </tr>
   
   <% @users.each do |user| %>
     <tr class="<%= cycle('odd', 'even')  %>" >
       <td align=right><%= user.ip_address %></td>
-      <td><%= user.assets.inject(0) {|sum, asset| sum + asset.conversions.count} %></td>
       <td><%= user.assets.count %></td>
+      <td><%= user.assets.inject(0) {|sum, asset| sum + asset.conversions.count} %></td>
+      
     </tr>
   <% end %>
 </table>
