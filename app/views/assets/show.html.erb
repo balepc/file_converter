@@ -17,11 +17,24 @@
       <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
     <% end %>
   <% end %>
-    
+          
 </ul>
 <br>
 <center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>
 <br>
-<div id="ads" style="display:none;">
+<div id="text" style="display:none;">  
   <%= @full_text %>
+</div>
+<div id="ads">
+  <script type="text/javascript"><!--
+      google_ad_client = "pub-9355092926460482";
+      /* 234x60, created 3/31/09 */
+      google_ad_slot = "5876563037";
+      google_ad_width = 234;
+      google_ad_height = 60;
+      //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
 </div>
