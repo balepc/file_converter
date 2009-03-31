@@ -13,12 +13,12 @@ class AssetsController < ApplicationController
   end
   
   def create
-    asset = Asset.new(params[:conversion].merge(:ip_address => request.remote_ip))
-    if asset.save and asset.valid_from_format?
+    asset = Asset.new(params[:conversion].merge(:ip_address => request.remote_ip))  if params[:conversion]
+    if asset and asset.save and asset.valid_from_format?
       extract_keywords(asset)
       
       redirect_to asset_path(asset)
-    elsif params[:conversion][:uploaded_data].blank?
+    elsif params[:conversion].nil? or params[:conversion][:uploaded_data].blank?
       flash[:message] = 'File not specified'
       redirect_to '/'
     else
