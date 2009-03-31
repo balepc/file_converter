@@ -2,8 +2,8 @@ set :application, "file_converter"
 
 set :deploy_to, "/var/www/apps/#{application}"
 
-set :scm, :git
-set :repository,  "git://github.com/balepc/file_converter.git"
+set :scm, :git       
+set :repository,  "git@github.com:balepc/file_converter.git"
 set :branch, "master"
 
 set :deploy_via, :export
