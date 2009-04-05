@@ -23,5 +23,13 @@ class AdminNotifier < ActionMailer::Base
     
     body :filename => conversion.asset.filename, :time => conversion.spent
   end
+  
+  def ip_blocked(blocked_ip)
+    recipients 'balepc@gmail.com'
+    from  "noreply@converter.tds.lv"
+    subject "converter.tds.lv - IP blocked"
+    
+    body :ip_address => blocked_ip.ip_address
+  end
 
 end
