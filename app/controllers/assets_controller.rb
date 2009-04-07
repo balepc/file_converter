@@ -60,7 +60,7 @@ class AssetsController < ApplicationController
     if conversion and conversion.converted?
       full_text = File.read(conversion.result_filename)
       asset.update_attribute(:content_full_text, full_text)
-      asset.update_attribute(:content_keywords, get_keywords(full_text).join(','))
+      asset.update_attribute(:content_keywords, get_frequences(full_text).join(','))
     end
   end
   

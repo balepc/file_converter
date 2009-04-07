@@ -7,9 +7,6 @@ class Admin::AssetsController < ApplicationController
       :conditions => Condition.block { |c|
         c.and "filename", 'LIKE', "%#{params[:asset][:filename]}%" if params[:asset] and !params[:asset][:filename].blank?
       }, :order => 'created_at DESC', :per_page => 150, :page => params[:page])
-    
-    
-#    @assets = Asset.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 100
   end
   
   def download
