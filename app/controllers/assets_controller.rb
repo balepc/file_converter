@@ -10,8 +10,8 @@ class AssetsController < ApplicationController
   
   def show
     @full_text = @asset.content_full_text
-    @keywords = @asset.content_keywords
-#    @description = @full_text
+    @keywords =  @asset.content_keywords
+
   end
   
   def create

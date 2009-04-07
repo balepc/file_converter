@@ -17,14 +17,11 @@
       <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
     <% end %>
   <% end %>
-            
+              
 </ul>
 <br>
 <center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>
 <br>
-<div id="text" style="display:none;">  
-  <%= @full_text %>
-</div>
 <div id="ads">
   <center>
     <script type="text/javascript"><!--

@@ -30,6 +30,7 @@ Rails::Initializer.run do |config|
   
   config.gem 'shared-mime-info', :version=>'0.1'
   config.gem 'thoughtbot-shoulda', :lib => 'shoulda/rails', :source => "http://gems.github.com"
+  config.gem 'whatlanguage'
 
 
   # Only load the plugins named here, in the order given. By default, all plugins 

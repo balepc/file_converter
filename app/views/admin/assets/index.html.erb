@@ -8,6 +8,16 @@
     <th>&nbsp;</th>
   </tr>
   
+  <% form_tag admin_assets_path, :method => :get do %>
+    <tr>    
+      <th><input type=text name="asset[filename]"></input></th>
+      <th></th>
+      <th></th>
+      
+      <th><button>Filter</button></th>
+    </tr>
+  <% end %>
+  
   <% @assets.each do |asset| %>
     <tr class="<%= cycle('odd', 'even')  %>" >
       <td align=right><%= asset.filename[0..30] %></td>
