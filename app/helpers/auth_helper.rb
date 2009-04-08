@@ -12,4 +12,8 @@ module AuthHelper
     @asset.auth_token.ok?(params[:token])
   end
   
+  def google?
+    session[:google] == true
+  end
+  
 end
