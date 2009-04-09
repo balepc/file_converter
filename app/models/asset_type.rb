@@ -18,6 +18,10 @@ class AssetType < ActiveRecord::Base
       :ppt => ['odp', OdpPpt],
       :pdf => ['odp', OdpPdf],
       :odp => PptxOdp
+    },
+    :doc => {
+      :odt => DocOdt,
+      :docx => ['odt', OdtDocx]
     }
   }
   
