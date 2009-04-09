@@ -20,8 +20,12 @@
     <% ['odt', 'docx'].each do |format| %>
       <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
     <% end %>
+  <% elsif @asset.xls? %>
+    <% ['ods', 'xlsx'].each do |format| %>
+      <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
+    <% end %>
   <% end %>
-                    
+                      
 </ul>
 <br>
 <center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>

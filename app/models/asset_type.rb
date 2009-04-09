@@ -22,6 +22,10 @@ class AssetType < ActiveRecord::Base
     :doc => {
       :odt => DocOdt,
       :docx => ['odt', OdtDocx]
+    },
+    :xls => {
+      :ods => XlsOds,
+      :xlsx => ['ods', OdsXlsx]
     }
   }
   
