@@ -50,6 +50,12 @@ class AssetsController < ApplicationController
     @asset = Asset.find(params[:id])
   end
   
+  
+  def keyword_from_file_name(asset)
+    asset.update_attribute(:content_keywords, filename_keywords(asset.filename))
+  end
+  
+  # obsolete
   def extract_keywords(asset)
     if asset.docx?
       conversion = Conversion.convert(asset, 'txt')

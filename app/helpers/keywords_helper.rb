@@ -13,4 +13,26 @@ module KeywordsHelper
     words.frequent_keys(2)
   end
   
+  def filename_keywords(filename)
+    # remove extension
+    filename.gsub!(/#{File.extname(filename)}$/, '') 
+    
+    # remove numbers
+    filename.gsub!(/[0-9]/, '')
+           
+    # replace symbols
+    ['-', '$'].each do |sym|
+      filename.gsub!(sym, '')
+    end
+    
+    # remove double underline
+    filename.gsub!('__', '_')
+    
+    # replace underline with whitespaces
+    filename.gsub!('_', ' ')
+    filename.gsub!('.', ' ')
+    filename.gsub!('  ', ' ')
+    filename.strip
+  end
+  
 end

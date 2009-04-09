@@ -27,6 +27,7 @@ db/development_structure.sql
 config/environments/staging.rb
 log/development.log
 log/conversion.log
+log/test.log
 log/newrelic_agent.3000.log
 log/con
 public/assets
