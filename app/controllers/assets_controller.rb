@@ -16,7 +16,7 @@ class AssetsController < ApplicationController
   def create
     asset = Asset.new(params[:conversion].merge(:ip_address => request.remote_ip))  if params[:conversion]
     if asset and asset.save and asset.valid_from_format?
-      extract_keywords(asset)
+      keyword_from_file_name(asset)
       
       redirect_to asset_path(asset)
     elsif params[:conversion].nil? or params[:conversion][:uploaded_data].blank?
