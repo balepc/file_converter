@@ -42,7 +42,7 @@
         ch_non_contextual = 4;
         ch_vertical ="premium";
         ch_sid = "Chitika Premium";
-        var ch_queries = new Array(<%= @keywords %>);
+        var ch_queries = new Array("<%= @keywords %>");
         var ch_selected=Math.floor((Math.random()*ch_queries.length));
         if ( ch_selected < ch_queries.length ) {
             ch_query = ch_queries[ch_selected];
