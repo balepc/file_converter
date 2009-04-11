@@ -25,7 +25,7 @@
       <li><%= link_to format_filename(@asset, format), convert_asset_path(@asset, :format=>format.to_sym), :method => :post %></li>
     <% end %>
   <% end %>
-                      
+                        
 </ul>
 <br>
 <center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>
@@ -37,13 +37,12 @@
     <script type="text/javascript"><!--
         ch_client = "balepc";
         ch_type = "mpu";
-        ch_width = 336;
-        ch_height = 160;
+        ch_width = 120;
+        ch_height = 600;
         ch_non_contextual = 4;
         ch_vertical ="premium";
-        ch_backfill =1;
         ch_sid = "Chitika Premium";
-        var ch_queries = new Array( );
+        var ch_queries = new Array(<%= @keywords %>);
         var ch_selected=Math.floor((Math.random()*ch_queries.length));
         if ( ch_selected < ch_queries.length ) {
             ch_query = ch_queries[ch_selected];
