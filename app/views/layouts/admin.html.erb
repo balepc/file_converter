@@ -21,6 +21,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
             <li <%= "class=\"current\"" if controller.controller_name == 'conversions' %> ><%= link_to 'Conversions', admin_conversions_path %></li>
             <li <%= "class=\"current\"" if controller.controller_name == 'assets' %> ><%= link_to 'Assets', admin_assets_path %></li>
             <li <%= "class=\"current\"" if controller.controller_name == 'users' %> ><%= link_to 'Users', admin_users_path %></li>
+            <li <%= "class=\"current\"" if controller.controller_name == 'conv_requests' %> ><%= link_to 'Requests', admin_conv_requests_path %></li>
           </ul>
         </div>
       </div>

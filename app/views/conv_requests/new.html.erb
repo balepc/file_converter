@@ -1,0 +1,56 @@
+<% form_for :conv_request, @conv_request, :url => conv_requests_path, :html => {:multipart => true, :id => 'convert_form', :class=>'wufoo'} do |f| %>
+  <%= f.hidden_field :user_id, :value => @user.id if @user %>
+    <div class="info">
+      <div>Unfortunetly, system <b>couldn't</b> convert your file. This may be caused by the following reasons:
+        <p><b>File is corrupted</b> or <b>not valid.</b></p>
+        If you think file is <b>corrupted</b>, then you may <b>follow</b> <%= link_to 'this', click_banner_path(Banner.corrupted) %> link to fix it 
+        <p>OR</p> 
+        <p><b>leave</b> your <b>email</b> so we could try to fix it manually and <b>send</b> you converted file <b>within</b> a <b>day</b>.</p>
+        
+      </div>
+    </div>
+  
+  <ul>
+    <li>
+      <label class="desc">File:</label>
+      <div>
+        <%= f.hidden_field :asset_id, :value=>@asset.id %>
+        <input type="text" name="name" value="<%= @asset.filename %>" size="30" disabled="true"/>
+        <label>File would be sent to this address</label>
+      </div>
+    </li>
+    <li>
+      <label class="desc">Your email:</label>
+      <div>
+        <%= f.text_field :email %>
+        <label>File would be sent to this address</label>
+      </div>
+    </li>
+    <li>
+      <label class="desc">Language:</label>
+      <div>
+        <%= f.text_field :language %>
+        <label>Document language</label>
+      </div>
+    </li>
+    <li>
+      <label class="desc">Charset:</label>
+      <div>
+        <%= f.text_field :encoding %>
+        <label>Document charset (eg utf8, latin1, cp1251, ...)</label>
+      </div>
+    </li>
+    <li>
+      <label class="desc">Additional info:</label>
+      <div>
+        <%= f.text_area :description, :rows => 10, :cols => 35 %>
+        
+      </div>
+    </li>
+    <center>
+      <li class="buttons">
+        <%= f.submit 'Leave request', :class => 'btTxt' %>        
+      </li>
+    </center>
+  </ul>
+<% end %>

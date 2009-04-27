@@ -599,3 +599,7 @@ li.leftHalf .medium, li.rightHalf .medium,
 li.leftHalf .small, li.rightHalf .small{
 	width:100%;
 }
+
+.fieldWithErrors input {
+    background-color: #FF7400;
+}

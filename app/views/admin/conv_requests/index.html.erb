@@ -1,0 +1,21 @@
+<table width="100%" class="grid">
+  <tr>
+    <th>Email</th>
+    <th>Filename</th>
+    
+    <th>Language</th>
+    <th>Encoding</th>
+    <th>Description</th>
+  </tr>
+  
+  <% @conv_requests.each do |conv_request| %>
+    <tr class="<%= cycle('odd', 'even')  %>" >
+      <td align=right><%= conv_request.email %></td>
+      <td><%= conv_request.asset.filename %></td>
+      
+      <td><%= conv_request.language %></td>
+      <td><%= conv_request.encoding %></td>
+      <td><%= conv_request.description %></td>
+    </tr>
+  <% end %>
+</table>

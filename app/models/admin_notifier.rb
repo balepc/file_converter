@@ -31,5 +31,13 @@ class AdminNotifier < ActionMailer::Base
     
     body :ip_address => blocked_ip.ip_address
   end
+  
+  def conv_request(conv_request, url)
+    recipients 'balepc@gmail.com'
+    from  "noreply@converter.tds.lv"
+    subject "converter.tds.lv - New conversion request"
+    
+    body :url => url, :email => conv_request.email
+  end
 
 end

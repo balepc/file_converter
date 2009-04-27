@@ -37,7 +37,7 @@ class AssetsController < ApplicationController
     else
       AdminNotifier.deliver_cant_convert(@asset.filename)
       flash[:message] = 'Failed to convert your file. Please use the "Feedback" tab to describe your problem'
-      redirect_to '/'
+      redirect_to new_conv_request_path(:asset_id => @asset.id)
     end
   end
   
