@@ -3,13 +3,20 @@
     <div class="info">
       <div><%= flash[:message] %></div>
     </div>
+  <% else %>
+    <div class="info">
+      <div>
+        <%= @text %>
+      </div>
+    </div>
   <% end %>
+  
   <ul>
     <li>
-      <label class="desc">Docx file:</label>
+      <label class="desc"><%= @ext.capitalize %> file:</label>
       <div>
         <%= custom_file_field('conversion[uploaded_data]') %>
-        <label>Please, specify DOCX file to convert</label>
+        <label>Please, specify <%= @ext.upcase %> file to convert</label>
       </div>
     </li>
     <center>

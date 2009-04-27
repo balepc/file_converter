@@ -11,7 +11,7 @@ class AdminNotifier < ActionMailer::Base
   def cant_convert(filename)
     recipients 'balepc@gmail.com'
     from  "noreply@converter.tds.lv"
-    subject "converter.tds.lv - Incorrect format"
+    subject "converter.tds.lv - Cannot convert"
     
     body :filename => filename
   end
