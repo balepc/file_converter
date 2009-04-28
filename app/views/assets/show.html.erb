@@ -30,42 +30,13 @@
 <br>
 <center><%= link_to 'Permalink', asset_path(@asset, :token => @asset.auth_token.token) %></center>
 <br>
-<small><p style="text-align: right;">Sponsored links</p></small>
+<%#*<small><p style="text-align: right;">Sponsored links</p></small>%>
 <div id="ads">
   <center>
+    <!-- START CUSTOM WIDGETBUCKS CODE --><div><script src="http://api.widgetbucks.com/script/ads.js?uid=ixAhiPdnzkqGin7M"></script></div><!-- END CUSTOM WIDGETBUCKS CODE -->
     
     <!-- You will NOT be able to see the ad on your site! This unit is hidden on your page, and will only display to your search engine traffic (from US and CA). To preview, paste the code up on your site, then add #chitikatest=mortgage to the end of your URL in your browser's address bar.  Example:  www.yourwebsite.com#chitikatest=mortgage. This will show you what the ad would look like to a user who is interested in "mortgages." -->
-    <script type="text/javascript"><!--
-        ch_client = "balepc";
-        ch_type = "mpu";
-        ch_width = 250;
-        ch_height = 250;
-        ch_non_contextual = 4;
-        ch_vertical ="premium";
-        ch_font_title = "Comic Sans MS";
-        ch_font_text = "Comic Sans MS";
-        ch_sid = "Chitika Premium";
-        var ch_queries = new Array("<%= @keywords %>");
-        var ch_selected=Math.floor((Math.random()*ch_queries.length));
-        if ( ch_selected < ch_queries.length ) {
-            ch_query = ch_queries[ch_selected];
-        }
-        //--></script>
-    <script  src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript">
-    </script>
     
-    <!-- Begin: AdBrite, Generated: 2009-04-11 7:12:40  -->
-    <script type="text/javascript">
-        var AdBrite_Title_Color = '0000FF';
-        var AdBrite_Text_Color = '000000';
-        var AdBrite_Background_Color = 'FFFFFF';
-        var AdBrite_Border_Color = 'CCCCCC';
-        var AdBrite_URL_Color = '008000';
-        try{var AdBrite_Iframe=window.top!=window.self?2:1;var AdBrite_Referrer=document.referrer==''?document.location:document.referrer;AdBrite_Referrer=encodeURIComponent(AdBrite_Referrer);}catch(e){var AdBrite_Iframe='';var AdBrite_Referrer='';}
-    </script>
-    <script type="text/javascript">document.write(String.fromCharCode(60,83,67,82,73,80,84));document.write(' src="http://ads.adbrite.com/mb/text_group.php?sid=1119117&zs=3330305f323530&ifr='+AdBrite_Iframe+'&ref='+AdBrite_Referrer+'" type="text/javascript">');document.write(String.fromCharCode(60,47,83,67,82,73,80,84,62));</script>
-    <div><a target="_top" href="http://www.adbrite.com/mb/commerce/purchase_form.php?opid=1119117&afsid=1" style="font-weight:bold;font-family:Arial;font-size:13px;">Your Ad Here</a></div>
-    <!-- End: AdBrite -->
   </center>
   <br>
 </div>
