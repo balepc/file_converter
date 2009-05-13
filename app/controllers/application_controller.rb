@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def site_name
-    'converter.tds.lv'
+    'oconvert.lv'
   end
   
   def get_format
