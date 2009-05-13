@@ -1,9 +1,9 @@
 class UnoconvPort
 
-  PORTS = ['2002', '2003', '2004']
+  PORTS = ['2002']
 
   def self.port
-    PORTS[rand(3)]
+    PORTS[0]
   end
 
 end
