@@ -1,3 +1,5 @@
+require 'unoconv_port'
+
 module ConvProcess
   
   def self.restart_soffice
