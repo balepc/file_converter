@@ -1,7 +1,7 @@
 class OdsPdf < Base
   
   def command
-    `unoconv -p 2002 --format=pdf #{self.master_filename}`
+    `unoconv -p #{UnoconvPort.port} --format=pdf #{self.master_filename}`
   end
   
   def from

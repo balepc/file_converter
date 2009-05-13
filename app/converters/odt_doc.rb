@@ -1,7 +1,7 @@
 class OdtDoc < Base
   
   def command
-    `unoconv -p 2002 --format=doc #{self.master_filename}`
+    `unoconv -p #{UnoconvPort.port} --format=doc #{self.master_filename}`
   end
   
   def from

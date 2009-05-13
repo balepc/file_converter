@@ -1,7 +1,7 @@
 class OdtRtf < Base
   
   def command
-    `unoconv -p 2002 --format=rtf #{self.master_filename}`
+    `unoconv -p #{UnoconvPort.port} --format=rtf #{self.master_filename}`
   end
   
   def from

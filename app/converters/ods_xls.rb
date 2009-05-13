@@ -1,7 +1,7 @@
 class OdsXls < Base
   
   def command
-    `unoconv -p 2002 --format=xls #{self.master_filename}`
+    `unoconv -p #{UnoconvPort.port} --format=xls #{self.master_filename}`
   end
   
   def from

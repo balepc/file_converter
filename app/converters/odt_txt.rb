@@ -1,7 +1,7 @@
 class OdtTxt < Base
   
   def command
-    `unoconv -p 2002 --format=txt #{self.master_filename}`
+    `unoconv -p #{UnoconvPort.port} --format=txt #{self.master_filename}`
   end
   
   def from
