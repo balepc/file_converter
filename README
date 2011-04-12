@@ -1,6 +1,23 @@
 == 'docx' to 'doc' Converter
 
-Simple docx to doc converter.
+Simple docx to doc converter based on ubuntu odf convertor. Currently supports the following formats:
+
+doc_odt.rb		
+docx_odt.rb		
+odp_pdf.rb		
+odp_ppt.rb		
+ods_csv.rb		
+ods_pdf.rb		
+ods_xls.rb		
+ods_xlsx.rb		
+odt_doc.rb		
+odt_docx.rb		
+odt_pdf.rb		
+odt_rtf.rb		
+odt_txt.rb		
+pptx_odp.rb		
+xls_ods.rb		
+xlsx_ods.rb
 
 Dependencies:
 
