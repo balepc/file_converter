@@ -11,10 +11,10 @@ set :deploy_via, :export
 set :user, 'deploy'
 set :ssh_options, { :forward_agent => true }
 
-ssh_options[:port] = 987
-role :app, "deploy@97.107.129.29"
-role :web, "deploy@97.107.129.29"
-role :db,  "deploy@97.107.129.29", :primary => true
+ssh_options[:port] = xxx
+role :app, "deploy@xxx"
+role :web, "deploy@xxx"
+role :db,  "deploy@xxx", :primary => true
  
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
